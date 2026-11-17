@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DinCharya - Daily Task Planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>DinCharya</h1>
+    <p class="sub" id="todayLabel"></p>
+  </div>
+  <div class="head-actions">
+    <button id="notifyBtn" class="ghost">Enable reminders</button>
+    <button id="settingsBtn" class="ghost">Settings</button>
+  </div>
+</header>
+
+<section class="quick">
+  <div class="quick-row">
+    <input id="quickInput" placeholder='Type a task, e.g.  DBMS assignment 2h by fri !high' autocomplete="off">
+    <button id="addBtn">Add</button>
+  </div>
+  <div id="preview" class="preview">
+    Write naturally. Time: <b>45m</b>, <b>1h 30m</b> &middot; Deadline: <b>today</b>, <b>kal</b>, <b>by fri</b>, <b>by 20/11</b> &middot;
+    Priority: <b>!high</b>, <b>!low</b> &middot; Repeat: <b>daily</b>, <b>weekly</b>
+  </div>
+</section>
+
+<div id="notice" class="notice hidden"></div>
+
+<main>
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Tasks</h2>
+      <span id="taskCount" class="muted"></span>
+    </div>
+    <ul id="taskList"></ul>
+    <p class="empty" id="noTasks">Nothing here yet. Add your first task above.</p>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Today's plan</h2>
+      <button id="icsBtn" class="ghost small">Export to calendar</button>
+    </div>
+    <div id="timeline"></div>
+    <div id="overflow"></div>
+  </section>
+</main>
+
+<section class="stats" id="stats"></section>
+
+<dialog id="settings">
+  <form method="dialog" id="settingsForm">
+    <h2>Settings</h2>
+    <div class="grid2">
+      <label>Day starts at <input type="time" id="setStart"></label>
+      <label>Day ends at <input type="time" id="setEnd"></label>
+    </div>
+    <label>Break between tasks (minutes) <input type="number" id="setGap" min="0" max="60"></label>
+    <label>Busy hours (one per line, like <code>10:00-16:00 College</code>)
+      <textarea id="setBusy" rows="4"></textarea>
+    </label>
+    <div class="row">
+      <button type="button" id="exportBtn" class="ghost small">Download backup</button>
+      <label class="ghost small file-btn">Restore backup <input type="file" id="importFile" accept=".json" hidden></label>
+      <button type="button" id="resetBtn" class="ghost small danger">Delete everything</button>
+    </div>
+    <div class="row end">
+      <button value="cancel" class="ghost">Cancel</button>
+      <button id="saveSettings" value="save">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<footer>Made by <span contenteditable="true">SATYAM PAL</span>, BCA 3rd Year &middot; works offline, data stays in your browser</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
